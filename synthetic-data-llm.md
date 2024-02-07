@@ -1,4 +1,6 @@
+
 # 用GPT-4合成数据来训练AI模型，实现SOTA！
+
 https://mp.weixin.qq.com/s/Dzkg-GBYiekQknhF_Q6lgQ
 
 RAG是未来LLMs应用的重要趋势之一。
