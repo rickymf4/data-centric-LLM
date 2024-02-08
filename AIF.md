@@ -3,6 +3,10 @@ RLAIF已经不是新鲜事了，之前包括Anthropic，谷歌都推出过自己
 
 # Meta提出自奖励语言模型
 
+https://mp.weixin.qq.com/s/0Hd3VsmPVMXWATytZQuOiQ
+
+Self-Rewarding Language Models : https://arxiv.org/pdf/2401.10020.pdf
+
 然后研究人员建立一个模型，让它同时拥有两种能力：
 
 指令遵循：给出描述用户请求的提示，能够生成高质量、有帮助（且无害）的响应。
