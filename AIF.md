@@ -41,6 +41,8 @@ https://aclanthology.org/2023.emnlp-main.494.pdf
 - Liar：辨别英语fake news
 - Sarcasm：辨别阿拉伯语讽刺言论
 
+我们提出了一种通用且非参数化的自动提示优化算法，即基于文本梯度的提示优化（Prompt Optimization with Textual Gradients, ProTeGi），它通过以定向方式对提示进行离散改进来连接这两类研究。
+基于文本的test-based Socratic 梯度下降步骤来克服离散优化障碍（zeng 2022），用语言模型反馈替代微分，用语言模型编辑替代反向传播。具体来说，我们使用训练数据的小批量生成自然语言中的“梯度”，即小批量相对于当前提示的缺陷描述，然后根据梯度的相反语义方向编辑当前提示。这些步骤成为对提示空间进行更广泛的束搜索的一部分，通过将束候选选择问题视为最佳臂识别问题的一个实例来提高算法效率（Audibert等人，2010）。
 
 
 # 用MT-Bench和Chatbot Arena评测LLM as a Judge
