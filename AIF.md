@@ -28,6 +28,20 @@ M3：用M2初始化，然后使用DPO用AIFT(M2)数据进行训练。
 
 https://github.com/lucidrains/self-rewarding-lm-pytorch/tree/main
 
+# 基于“梯度下降”和Beam Search的自动提示优化
+https://aclanthology.org/2023.emnlp-main.494.pdf
+提出了一种自动优化LLM提示方法——Automatic Prompt Optimization(APO)，。通过自动或半自动程序来帮助人类编写最佳提示。这有助于减少人工努力、提高任务性能，并产生可解释的认知决策过程描述。
+- 利用LLM本身去寻找prompt的瑕疵。将语言模型的输出y ^ \hat{y} y^与正确答案（label）y yy还有prompt p pp 一起送入LLM，并通过类似“What is wrong with p pp? ”这样的问题让LLM自己找出prompt的问题所在，并将这次输出当作prompt在“自然语言域”的“梯度”g 。
+- 根据梯度g让LLM自己对prompt做调整。把p ,g一起输入给LLM，并通过类似 “Use g to fix p ”的指令让LLM生成新的prompt。原文在此基础之上，还使用LLM多次paraphrase新的prompt从而“拓宽蒙特卡洛搜索空间”。
+- 结合Beam search和Bandit selection在生成的新prompt里寻找最优解。每次做完前面所述的1.2.两步以后，就会产生许多候选prompt，文章使用beam search的方式，每次用bandit selection找到比较好的几个prompt，在此基础之上继续迭代，若干次后挑选其中最好的prompt。
+
+在4个数据集上做了实验，都是偏向网络安全类的，而且都是分类问题。看上去是吊打Monte-Carlo (MC)，Reinforcement Learning (RL)和AutoGPT。
+- Jailbreak：用户尝试绕过LLM的一些安全限制
+- Ethos：辨别英语仇恨言论
+- Liar：辨别英语fake news
+- Sarcasm：辨别阿拉伯语讽刺言论
+
+
 
 # 用MT-Bench和Chatbot Arena评测LLM as a Judge
 https://arxiv.org/pdf/2306.05685.pdf
