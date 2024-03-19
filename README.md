@@ -9,3 +9,4 @@ data centric techs for large language model
 - 4）探索AIF，使得让LLM给出更好的结果。
 - 5）探索基于数据的prompt优化方案，使得让LLM给出更好的结果。
 - 6）基于LLM的数据质量自动评估。
+- 7）交互式的基于LLM的数据探索
