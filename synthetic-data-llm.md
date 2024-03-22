@@ -32,7 +32,7 @@ MDClone 在提供克隆但匿名的患者数据方面迈出了变革性的一步
 
 
 合成数据的字符集较短。这是由于MOSTLY AI平台内的隐私机制，其中非常罕见的token被删除，以防止它们的存在泄露个人记录的存在信息。
-
+https://mostly.ai/blog/synthetic-data-for-text-annotation
 
 
 # 用GPT-4合成数据来训练AI模型，实现SOTA！
