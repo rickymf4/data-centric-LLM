@@ -13,4 +13,39 @@ https://github.com/hymie122/RAG-Survey?spm=5176.28575916.0.0.2d186db7GyG2Xl
 RetrieveGAN [43] 使用可微分检索过程从其他图像中选择兼容的补丁作为生成的参考。它采用 Gumbel-softmax 技巧使检索过程可微分，从而实现端到端训练和嵌入函数优化。它还通过额外的目标函数来鼓励选择彼此兼容的补丁。RetrieveGAN 可以根据场景描述生成逼真且多样的图像，其中检索到的补丁合理且连贯。IC-GAN [137] 将数据分布建模为每个训练示例周围的条件分布混合。它在生成器和判别器上都施加了实例特征约束，这些特征由预训练的特征提取程序获得。它还将条件实例的最近邻用作判别器的正样本。IC-GAN 既适用于带标签的数据集也适用于不带标签的数据集，并且可以通过更改条件实例来转移到未见过的数据集。IC-GAN 还可以控制生成图像的语义和风格，方法是交换类标签或实例特征。然而，使用训练数据本身进行检索可能会限制其泛化能力。KNN扩散 [149] 使用大规模检索方法在没有任何文本数据的情况下训练一个基于扩散的模型。该模型以两个输入为条件：由CLIP提取的文本或图像嵌入，以及来自大型图像数据库中k个最近邻居的嵌入。k近邻嵌入有助于弥合文本和图像分布之间的差距，并通过简单地交换数据库来生成不同域中的图像。该模型还能够通过微调模型以预测从a操纵版本。RDM [150] 将一个小扩散或自回归模型与一个大型外部图像数据库结合起来，构成一个半参数化模型。在训练过程中，该模型为每个训练图像从数据库中检索一组最近邻，并根据它们的 CLIP 编码对生成模型进行条件设置。这样，模型就可以学习根据检索到的视觉内容来构建新的场景。在推理过程中，该模型可以通过更改数据库或检索策略来推广到新颖领域、任务和条件。Re-imagen [148] 从外部多模态知识库检索信息以产生逼真且忠实的图像，特别是对于罕见或未见过的实体。它基于一个级联扩散模型，其生成取决于文本提示和检索到的图像文本来进行条件设置。它还提出了一种交替分类器免费指导时间表来平衡文本和检索条件之间的对齐。Re-imagen 在 COCO 和 WikiImages 数据集上实现了最先进的性能，并显著提高了生成图像的新基准 EntityDrawBench 的保真度。X&Fuse [233] 是一种用于从文本生成图像时对视觉信息进行条件设置的一般方法。它通过在 U-Net 架构中的每个注意力块之前连接经过条件设置的图像和噪声图像，并通过自我注意机制使它们之间可以相互交互来实现这一点。Retrieve&Fuse 是 X&Fuse 的一个特例，其中根据文本或图像索引从大量图像库中检索出经条件设置的图像。X&Fuse 相较于替代方法具有几个优势，例如对空间差异的鲁棒性、没有信息损失等。RPG [77] 检索代表性图像以构造信息丰富的上下文示例（即图像区域对），并利用多模态连锁思维推理[234] 来规划复合文本到图像扩散的互补子区域。
 
 
+# 𝗦𝘂𝗽𝗲𝗿 𝗡𝗘𝗪 𝗥𝗔𝗚 𝘁𝗲𝗰𝗵𝗻𝗶𝗾𝘂𝗲𝘀 𝘄𝗶𝘁𝗵 𝗣𝗿𝗮𝗰𝘁𝗶𝗰𝗮𝗹:- 20240406
+
+## 1. 𝗖𝗵𝗮𝗶𝗻 𝗼𝗳 𝗡𝗼𝘁𝗲
+
+Steps in CoN involve Generating notes for documents that have been retrieved, which result in a more factually correct answer and also because Notes are generated at steps that have been used to break the problem in the final step trustworthiness of the answer also increases.
+
+Practical - https://lnkd.in/gpSzmrWu
+
+## 2. 𝗖𝗼𝗿𝗿𝗲𝗰𝘁𝗶𝘃𝗲 𝗥𝗔𝗚
+
+This RAG technique breaks the problem into a binary step if the retrieved answer is Ambiguous --> Then the query is passed to Search and then search results are taken and finally LLM is triggered again to look at the query keeping in mind both RAG document and Search results.
+
+Practical - https://lnkd.in/g_MKJWsB
+
+## 3. 𝗥𝗔𝗚 𝗙𝘂𝘀𝗶𝗼𝗻 
+
+A Query is broken into small sub-queries in this approach. Then these queries are given to a vector DB to retrieve the most relevant documents for each query. Finally, using the Reciprocal rank fusion algorithm, the most relevant information is prioritized.
+( In LlamaIndex When I used the combination of Recursive Retrieval and Semantic Chunking + Pinecone as VectorDB results came out best for our RAG application)
+Practical:-
+1. LangChain - https://lnkd.in/gCuJJm4t
+2. LlamaIndex - https://lnkd.in/gtUBq3_J
+
+## 4. 𝗘𝗺𝗼𝘁𝗶𝗼𝗻𝗣𝗿𝗼𝗺𝗽𝘁 
+
+In this prompting technique researchers have shown how adding a few lines to the prompt can improve the performance of RAG.
+Practical - https://lnkd.in/gimGJa_U
+
+## 5. 𝗦𝗲𝗹𝗳-𝗥𝗔𝗚 
+
+A self-rag technique where LLMs can do self-reflection for dynamic retrieval, critique, and generation.
+
+Practical - https://lnkd.in/gWa6GFJB
+Thanks, Roie Schwaber-Cohen for your awesome work at Pinecone blog and
+I would also like to thank Pratik Bhavsar for his blog at 🔭 Galileo and Cobus Greyling
+
 
